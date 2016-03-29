@@ -17,5 +17,8 @@ touch /etc/dnscache/root/ip/192.168
 # Put the contents of /etc/resolv.conf into the dnscache server list
 /usr/local/bin/migrate_resolvconf.py
 
+# Disable logging by having multilog throw away logs
+echo "#!/bin/sh\nexec setuidgid bin multilog -*" > /etc/dnscache/log/run
+
 # my_init will run the service
 ln -s /etc/dnscache /etc/service/dnscache
